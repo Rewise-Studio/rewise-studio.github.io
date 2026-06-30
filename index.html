@@ -143,7 +143,7 @@
       margin-top: 60px;
       min-height: calc(70vh);
       display: grid;
-      grid-template-columns: calc(50% + 10px) 1fr;
+      grid-template-columns: 1fr 1fr;
     }
 
     .rw-hero-left {
@@ -1132,6 +1132,18 @@
   </footer>
 
   <script>
+    // Выравниваем границу Hero по разделителю логотипа
+    function alignHero() {
+      const divider = document.querySelector('.rw-header-div');
+      const hero = document.querySelector('.rw-hero');
+      if (!divider || !hero) return;
+      const rect = divider.getBoundingClientRect();
+      const pos = rect.left + rect.width / 2;
+      hero.style.gridTemplateColumns = pos + 'px 1fr';
+    }
+    window.addEventListener('load', alignHero);
+    window.addEventListener('resize', alignHero);
+
     const burger = document.getElementById('burger');
     burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
     function closeMobileMenu() { mobileMenu.classList.remove('open'); }
